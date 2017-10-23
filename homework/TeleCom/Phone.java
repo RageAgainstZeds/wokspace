@@ -36,7 +36,7 @@ public class Phone {
 		return support4G;
 	}
 	public void setSupport4G(boolean support4g) {
-		support4G = support4g;
+		this.support4G = support4g;
 	}
 	public double getBalance() {
 		return balance;
