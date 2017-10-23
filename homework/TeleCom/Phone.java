@@ -12,7 +12,7 @@ public class Phone {
 		this.msisdn = msisdn;
 		this.type = type;
 		this.model = model;
-		support4G = support4g;
+		this.support4G = support4g;
 	}
 	public int getMsisdn() {
 		return msisdn;
