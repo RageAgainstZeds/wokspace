@@ -28,7 +28,7 @@ public class Desk {
 			}
 		
 		}
-		System.out.println("Zoo is empty :(" );
+		System.out.println("Desk is clear! Give another shot!" );
 		return;
 	}
 	
