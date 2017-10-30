@@ -7,6 +7,8 @@ public class Student extends Human {
 		private String faculty;
 		private String groupName;
 		private int course;
+		private int studentId;
+		private static int listId = 0;
 		
 		public Student(String name, String surname, String birth, char sex, double height, double weight,
 				String universityName, String faculty, String groupName, int course) {
@@ -15,6 +17,9 @@ public class Student extends Human {
 			this.faculty = faculty;
 			this.groupName = groupName;
 			this.course = course;
+			this.studentId = Student.listId+1;
+			Student.listId++;
+			
 		}
 
 		public Student(String name, String surname, String birth, char sex, double height, double weight) {
@@ -53,8 +58,21 @@ public class Student extends Human {
 			this.course = course;
 		}
 		
-		
-		
+		public int getStudentId() {
+			return studentId;
+		}
+
+		public void setStudentId(int studentId) {
+			this.studentId = studentId;
+		}
+
+		public static int getListId() {
+			return listId;
+		}
+
+		public static void setListId(int listId) {
+			Student.listId = listId;
+		}
 		
 /*		public static Comparator<Student> StudentName = new Comparator<Student>() {
 			@Override
@@ -63,11 +81,15 @@ public class Student extends Human {
 			}
 		};*/
 		
+
+
 		@Override
 		public String toString() {
 			return super.toString() + "Student [universityName=" + universityName + ", faculty=" + faculty + ", groupName=" + groupName
 					+ ", course=" + course + "]";
 		}
+
+
 
 
 		

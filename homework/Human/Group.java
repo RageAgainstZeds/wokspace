@@ -1,13 +1,18 @@
 package com.homework.Human;
 
-import java.util.Arrays;
-
+//import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
+//import java.util.Comparator;
+//import java.io.*;
 import com.homework.Human.Exeptions.IDExeption;
 import com.homework.Human.Exeptions.IDFreeExeption;
 import com.homework.Human.Exeptions.ClassExeption;
 
 public class Group {
-		private Student[] classList = new Student[10];
+		//private Student[] classList = new Student[10];
+		private List<Student> classList = new ArrayList<>(10);
 		
 		public Group() {
 			super();
@@ -15,41 +20,51 @@ public class Group {
 
 
 		public void addStudent(Student student) throws ClassExeption {
-			for (int i = 0; i<classList.length; i++) {
-				if (classList[i] != null) {
-					if (i < 10) {
-						classList[i] = student;
-						System.out.println("Student added!");
+					if (classList.size() < 10) {
+						classList.add(student);
+						System.out.println("Student "+ student.getSurname() + " " + student.getName() + 
+								   " with ID:" + student.getStudentId() + " was added!");
 					} else {
-						throw new ClassCastException();
-					}
-				}
-			}
+						throw new ClassCastException("The group is full!");
+					}			
 		}
 		
 		public void removeStudent(int id) throws IDExeption, IDFreeExeption {
-			if (id >= 10) {
-				throw new IDExeption();
-			} else
-			if (this.classList[id-1] == null) {
-				throw new IDFreeExeption();
-			} else {
-				classList[id-1] = null;
-				System.out.println("Student deleted!");
+			//trying new
+			int countI = 0;
+			for (Student student : classList) {
+				if (id > 10) {
+					throw new IDExeption();
+				} else {
+					if (student.getStudentId() == id) {
+						//System.out.println(Student.getListId());
+						Student.setListId(Student.getListId()-1);
+						classList.remove(countI);
+						System.out.println("Student " + student.getSurname() + " " + student.getName() + 
+										   " with ID:" + student.getStudentId() + " was deleted!");
+						break;
+						//System.out.println(Student.getListId());
+					}
+				}
+				countI++;
 			}
 		}
 		
 		
 		public String searchSudent(String surname) {
-			for (int i = 0; i < classList.length; i++) {
-				if (classList[i] == null) {
-					
-				} else if(classList[i].getName().equalsIgnoreCase(surname)) {
-					System.out.println(classList[i].toString());
+			// another try
+			for (Student student : classList) {
+				if (surname.equals(null)) {
+					System.out.println("Cannot be null!");
+				}
+				else if (student.getSurname().equals(surname.trim())) {
+					System.out.println(student.toString());
+					break;
 				} else {
-					System.out.println("This student doesn't exist!");
+					//System.out.println("Student doesn't exist!");
 				}
 			}
+			
 			return null;	
 		}
 			
@@ -58,19 +73,17 @@ public class Group {
 		@Override
 		public String toString() {
 			StringBuilder sb = new StringBuilder();
-			
-			Arrays.sort(classList, new nameComparator());
-			
+			Collections.sort(classList, new nameComparator());
+			int count = 1;
 			for (Student student : classList) {
-				int count = 1;
-				if (student != null) {
-					sb.append(count ++);
-				} /*else if (student == null) {
+				if (student == null) {
 					sb.append("FREE!");
-				}*/
-				sb.append(System.lineSeparator());
+				} else {
+					sb.append(count++ + ")  " + student.getSurname() + " " + student.getName() + 
+							  "Student ID: " + student.getStudentId());
+				}
+				sb.append(System.lineSeparator());			
 			}
-			
 			return sb.toString();
 		}
 		
