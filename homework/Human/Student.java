@@ -1,5 +1,6 @@
 package com.homework.Human;
 
+import javax.swing.JOptionPane;
 //import java.util.Comparator;
 
 public class Student extends Human {
@@ -19,7 +20,27 @@ public class Student extends Human {
 			this.course = course;
 			this.studentId = Student.listId+1;
 			Student.listId++;
+		}
+		
+		public Student() {
+			//super(name, surname, birth, sex, height, weight);
 			
+			//Integer.valueOf(JOptionPane.showInputDialog("How many students do You want add?"));
+			
+			super.setName(String.valueOf(JOptionPane.showInputDialog("Enter the Student name")));
+			super.setSurname(String.valueOf(JOptionPane.showInputDialog("Enter the Student surname")));
+			super.setBirth(String.valueOf(JOptionPane.showInputDialog("Enter the Student birth")));
+			String sex = String.valueOf(JOptionPane.showInputDialog("Enter the Student sex ('m' or 'f')"));
+			super.setSex(sex.charAt(0));
+			super.setHeight(Double.valueOf(JOptionPane.showInputDialog("Enter the Student height")));
+			super.setWeight(Double.valueOf(JOptionPane.showInputDialog("Enter the Student weight")));
+			
+			this.universityName = String.valueOf(JOptionPane.showInputDialog("Enter the University name"));
+			this.faculty = String.valueOf(JOptionPane.showInputDialog("Enter the faculty name"));
+			this.groupName = String.valueOf(JOptionPane.showInputDialog("Enter the group name"));
+			this.course = Integer.valueOf(JOptionPane.showInputDialog("Enter the course (int)"));
+			this.studentId = Student.listId+1;
+			Student.listId++;
 		}
 
 		public Student(String name, String surname, String birth, char sex, double height, double weight) {
