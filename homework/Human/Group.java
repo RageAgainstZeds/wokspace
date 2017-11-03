@@ -9,9 +9,10 @@ import javax.swing.JOptionPane;
 //import java.io.*;
 import com.homework.Human.Exeptions.IDExeption;
 import com.homework.Human.Exeptions.IDFreeExeption;
+import com.homework.Human.Comparators.*;
 import com.homework.Human.Exeptions.ClassExeption;
 
-public class Group {
+public class Group implements WarCom {
 		//private Student[] classList = new Student[10];
 		private List<Student> classList = new ArrayList<>(10);
 		
@@ -82,31 +83,102 @@ public class Group {
 			
 			if (a > 0) {
 				for(int i = 0; i < a; i++){
-					Group group = new Group();
-					group.addStudent(new Student());
+					try {
+						String name = String.valueOf(JOptionPane.showInputDialog("Enter the Student name"));
+						String surname = String.valueOf(JOptionPane.showInputDialog("Enter the Student surname"));
+						String birth = String.valueOf(JOptionPane.showInputDialog("Enter the Student birth"));
+						String sexStr = String.valueOf(JOptionPane.showInputDialog("Enter the Student sex ('m' or 'f')"));
+						char sex = sexStr.charAt(0);
+						Double height = Double.valueOf(JOptionPane.showInputDialog("Enter the Student height"));
+						Double weight = Double.valueOf(JOptionPane.showInputDialog("Enter the Student weight"));
+						
+						String universityName = String.valueOf(JOptionPane.showInputDialog("Enter the University name"));
+						String faculty = String.valueOf(JOptionPane.showInputDialog("Enter the faculty name"));
+						String groupName = String.valueOf(JOptionPane.showInputDialog("Enter the group name"));
+						int course = Integer.valueOf(JOptionPane.showInputDialog("Enter the course (int)"));
+						Student.setListId(Student.getListId() + 1);
+						
+						Group group = new Group();
+						group.addStudent(new Student(name, surname, birth, sex, height, weight,
+													 universityName, faculty, groupName, course));
+					} catch(NullPointerException e) {
+						e.getMessage();
+					}
+					
 				}
 			} else {
 				
 			}
 		}
-			
-
-
-		@Override
-		public String toString() {
+		
+		//sort by Birth
+		public String sortByBirth() {
 			StringBuilder sb = new StringBuilder();
-			Collections.sort(classList, new nameComparator());
+			Collections.sort(classList, new AgeComparator());
 			int count = 1;
 			for (Student student : classList) {
 				if (student == null) {
 					sb.append("FREE!");
 				} else {
-					sb.append(count++ + ")  " + student.getSurname() + " " + student.getName() + 
+					sb.append(count++ + ")  " + student.getSurname() + " " + student.getName() + " " +
+							  "Student ID: " + student.getStudentId() + " " + student.getBirth() +
+							  " " + student.getAge());
+					//sb.append();
+				}
+				sb.append(System.lineSeparator());			
+			}
+			return sb.toString();
+		}
+		
+		//sort by name
+		public String sortByName() {
+			StringBuilder sb = new StringBuilder();
+			Collections.sort(classList, new NameComparator());
+			int count = 1;
+			for (Student student : classList) {
+				if (student == null) {
+					sb.append("FREE!");
+				} else {
+					sb.append(count++ + ")  " + student.getSurname() + " " + student.getName() + " " +
+							  "Student ID: " + student.getStudentId() + " " + student.getBirth() +
+							  " " + student.getAge());
+					//sb.append();
+				}
+				sb.append(System.lineSeparator());			
+			}
+			return sb.toString();
+		}
+
+		@Override
+		public String toString() {
+			StringBuilder sb = new StringBuilder();
+			Collections.sort(classList, new NameComparator());
+			int count = 1;
+			for (Student student : classList) {
+				if (student == null) {
+					sb.append("FREE!");
+				} else {
+					sb.append(count++ + ")  " + student.getSurname() + " " + student.getName() + " " +
 							  "Student ID: " + student.getStudentId());
 				}
 				sb.append(System.lineSeparator());			
 			}
 			return sb.toString();
 		}
-	
+
+
+		@Override
+		public List<Student> getRecruts() {
+			List<Student> recrutsList = new ArrayList<>();
+			
+			for (Student student : classList) {
+				if (student.getAge() > 17) {
+					recrutsList.add(student);
+				} else {
+				
+				}		
+			}
+			return recrutsList;
+		}
+		
 }
