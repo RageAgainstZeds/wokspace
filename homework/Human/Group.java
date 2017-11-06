@@ -74,13 +74,11 @@ public class Group implements WarCom {
 			int a = 0;
 			try {
 				a = Integer.valueOf(JOptionPane.showInputDialog("How many students do You want add?"));
-				//break;
 			} catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(null, "Error number format! Print Integer DUMBASS!");
 			} catch (NullPointerException e) {
 				JOptionPane.showMessageDialog(null, "Bye-bye!");
 			}
-			
 			if (a > 0) {
 				for(int i = 0; i < a; i++){
 					try {
@@ -91,23 +89,18 @@ public class Group implements WarCom {
 						char sex = sexStr.charAt(0);
 						Double height = Double.valueOf(JOptionPane.showInputDialog("Enter the Student height"));
 						Double weight = Double.valueOf(JOptionPane.showInputDialog("Enter the Student weight"));
-						
 						String universityName = String.valueOf(JOptionPane.showInputDialog("Enter the University name"));
 						String faculty = String.valueOf(JOptionPane.showInputDialog("Enter the faculty name"));
 						String groupName = String.valueOf(JOptionPane.showInputDialog("Enter the group name"));
 						int course = Integer.valueOf(JOptionPane.showInputDialog("Enter the course (int)"));
 						Student.setListId(Student.getListId() + 1);
-						
 						Group group = new Group();
 						group.addStudent(new Student(name, surname, birth, sex, height, weight,
 													 universityName, faculty, groupName, course));
 					} catch(NullPointerException e) {
 						e.getMessage();
-					}
-					
+					}	
 				}
-			} else {
-				
 			}
 		}
 		
