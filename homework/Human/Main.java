@@ -42,10 +42,19 @@ public class Main {
 		//group.addStudent(new Student("Charles", "Bronson", "03111921", 'm', 174, 70, "GrannyVerse", "PSAT", "UT-3", 4));
 		
 		System.out.println();
-		System.out.println("Sort by age: "+ System.lineSeparator() + group.sortByBirth());
-		System.out.println("Sort by name: "+ System.lineSeparator() + group.sortByName());
+		System.out.println("Sort by age: " + System.lineSeparator() + group.sortByBirth());
+		System.out.println("Sort by name: " + System.lineSeparator() + group.sortByName());
 		
 		group.printGroup("Z:\\Courses_JAVA\\src\\groupList.csv");
+		/*
+		 	Example from outcome file:
+		 	
+		 	Cooper;Dale;05191963;m;180.0;80.0;GrannyVerse;PLAT;UT-1;3;6
+			Gensburg;Charlotta;02151978;f;164.0;61.0;GrannyVerse;PSAT;UT-3;3;8
+			Green;Eva;07061980;f;168.0;58.0;GrannyVerse;PLAT;UT-2;2;9
+			Hicock;Bill;11191873;m;172.0;70.0;GrannyVerse;PSAT;UT-3;5;5
+			
+		*/
 		
 	}
 }
