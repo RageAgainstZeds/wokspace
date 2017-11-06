@@ -12,38 +12,22 @@ import java.util.stream.Collectors;
 
 public class MergeFiles {
 	
-	private File fileOne;
-	private File fileTwo;
 	private List<String> matchList = new ArrayList<>();
 	private File fileMatches;
 	private List<String> txtOne = new ArrayList<>();
 	private List<String> txtTwo = new ArrayList<>();
-	private File[] fileList;
+	private File[] fileList = new File[2];
 	
 	public MergeFiles(String fileOne, String fileTwo, String fileMatches) {
 		super();
-		this.fileOne = new File(fileOne);
-		this.fileTwo = new File(fileTwo);
 		this.fileMatches = new File(fileMatches);
-		this.fileList[0] = this.fileOne;
-		this.fileList[1] = this.fileTwo;
+		this.fileList[0] = new File(fileOne);
+		this.fileList[1] = new File(fileTwo);
 	}
 	public MergeFiles() {
 		super();
 	}
 		
-	public File getFileOne() {
-		return fileOne;
-	}
-	public void setFileOne(File fileOne) {
-		this.fileOne = fileOne;
-	}
-	public File getFileTwo() {
-		return fileTwo;
-	}
-	public void setFileTwo(File fileTwo) {
-		this.fileTwo = fileTwo;
-	}
 	public File getFileMatches() {
 		return fileMatches;
 	}
@@ -88,10 +72,10 @@ public class MergeFiles {
 		            while (iter.hasNext()) {
 		                String txt = (String) iter.next();
 		                fileOut.write(txt + " ");
-		                System.out.println("File Write Successfully!");
 		            }
 		            fileOut.flush();
 		            fileOut.close();
+		            System.out.println("File Write Successfully!");
 		        }
 		        catch (IOException ex) {
 		            System.out.println(ex.getMessage());
