@@ -45,5 +45,7 @@ public class Main {
 		System.out.println("Sort by age: "+ System.lineSeparator() + group.sortByBirth());
 		System.out.println("Sort by name: "+ System.lineSeparator() + group.sortByName());
 		
+		group.printGroup("Z:\\Courses_JAVA\\src\\groupList.csv");
+		
 	}
 }

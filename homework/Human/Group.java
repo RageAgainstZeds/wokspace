@@ -1,5 +1,8 @@
 package com.homework.Human;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 //import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,8 +75,7 @@ public class Group implements WarCom {
 		
 		public void addStudentPack () throws ClassExeption {
 			int a = 0;
-			try {
-				a = Integer.valueOf(JOptionPane.showInputDialog("How many students do You want add?"));
+			try {a = Integer.valueOf(JOptionPane.showInputDialog("How many students do You want add?"));
 			} catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(null, "Error number format! Print Integer DUMBASS!");
 			} catch (NullPointerException e) {
@@ -81,8 +83,7 @@ public class Group implements WarCom {
 			}
 			if (a > 0) {
 				for(int i = 0; i < a; i++){
-					try {
-						String name = String.valueOf(JOptionPane.showInputDialog("Enter the Student name"));
+					try {String name = String.valueOf(JOptionPane.showInputDialog("Enter the Student name"));
 						String surname = String.valueOf(JOptionPane.showInputDialog("Enter the Student surname"));
 						String birth = String.valueOf(JOptionPane.showInputDialog("Enter the Student birth"));
 						String sexStr = String.valueOf(JOptionPane.showInputDialog("Enter the Student sex ('m' or 'f')"));
@@ -95,8 +96,7 @@ public class Group implements WarCom {
 						int course = Integer.valueOf(JOptionPane.showInputDialog("Enter the course (int)"));
 						Student.setListId(Student.getListId() + 1);
 						Group group = new Group();
-						group.addStudent(new Student(name, surname, birth, sex, height, weight,
-													 universityName, faculty, groupName, course));
+						group.addStudent(new Student(name, surname, birth, sex, height, weight, universityName, faculty, groupName, course));
 					} catch(NullPointerException e) {
 						e.getMessage();
 					}	
@@ -135,13 +135,32 @@ public class Group implements WarCom {
 					sb.append(count++ + ")  " + student.getSurname() + " " + student.getName() + " " +
 							  "Student ID: " + student.getStudentId() + " " + student.getBirth() +
 							  " " + student.getAge());
-					//sb.append();
 				}
 				sb.append(System.lineSeparator());			
 			}
 			return sb.toString();
 		}
-
+		
+		public void printGroup (String fileUpload) {
+			Collections.sort(classList, new NameComparator());
+			
+			try(FileWriter fileOut = new FileWriter(new File(fileUpload))) {
+	            //write final list into the file
+				for (Student student : classList) {
+					fileOut.write(student.getSurname() + ";" + student.getName() + ";" + student.getBirth() + ";" + 
+								  student.getSex() + ";" + student.getHeight() + ";" + student.getWeight() + ";" + 
+								  student.getUniversityName() + ";" + student.getFaculty() + ";" + student.getGroupName() + ";" + 
+								  student.getCourse() + ";" + student.getStudentId() + System.lineSeparator());
+				}
+	            fileOut.flush();
+	            fileOut.close();
+	            System.out.println("File Write Successfully!");
+	        }
+	        catch (IOException ex) {
+	            System.out.println(ex.getMessage());
+	        }
+		}
+		
 		@Override
 		public String toString() {
 			StringBuilder sb = new StringBuilder();

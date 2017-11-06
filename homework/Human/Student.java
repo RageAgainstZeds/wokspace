@@ -26,7 +26,6 @@ public class Student extends Human {
 			this.course = course;
 			this.studentId = Student.listId+1;
 			Student.listId++;
-			//SimpleDateFormat dt = new SimpleDateFormat("ddmmyyyy");
 			this.age = Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(birth.substring(birth.length()-4));
 		}
 		
