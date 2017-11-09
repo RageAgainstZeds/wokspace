@@ -102,10 +102,6 @@ public class Student extends Human {
 			}
 		};
 */
-		
-
-
-		
 
 		@Override
 		public String toString() {

@@ -1,6 +1,7 @@
 package com.homework.Human;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 //import java.util.Arrays;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 import javax.swing.JOptionPane;
+import java.util.Scanner;
 //import java.util.Comparator;
 //import java.io.*;
 import com.homework.Human.Exeptions.IDExeption;
@@ -64,12 +66,15 @@ public class Group implements WarCom {
 					System.out.println("Cannot be null!");
 				}
 				else if (student.getSurname().equals(surname.trim())) {
+					System.out.println(student);
 					return student;
+					
 					//break;
 				} else {
 					//System.out.println("Student doesn't exist!");
 				}
 			}
+			System.out.println("Not Found!");
 			return null;	
 		}
 		
@@ -118,7 +123,7 @@ public class Group implements WarCom {
 							  " " + student.getAge());
 					//sb.append();
 				}
-				sb.append(System.lineSeparator());			
+				sb.append(System.lineSeparator());
 			}
 			return sb.toString();
 		}
@@ -159,6 +164,37 @@ public class Group implements WarCom {
 	        catch (IOException ex) {
 	            System.out.println(ex.getMessage());
 	        }
+		}
+		
+		public void importStudentFromFile(String adress) throws ClassExeption {
+			try {
+				File file = new File(adress);
+				Scanner sc = new Scanner(file);
+				while (sc.hasNext()) {
+					String[] parseList = sc.nextLine().split("[;]");
+						try {String name = parseList[0];
+							String surname = parseList[1];
+							String birth = parseList[2];
+							String sexStr = parseList[3];
+							char sex = sexStr.charAt(0);
+							Double height = Double.parseDouble(parseList[4]);
+							Double weight = Double.parseDouble(parseList[5]);
+							String universityName = parseList[6];
+							String faculty = parseList[7];
+							String groupName = parseList[8];
+							int course = Integer.parseInt(parseList[9]);
+							Student.setListId(Student.getListId() + 1);
+							Group group = new Group();
+							group.addStudent(new Student(name, surname, birth, sex, height, weight, universityName, 
+														faculty, groupName, course));
+						} catch(NullPointerException e) {
+							e.getMessage();
+						}
+					}
+					sc.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		@Override

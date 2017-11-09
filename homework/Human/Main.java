@@ -25,13 +25,11 @@ public class Main {
 		
 		System.out.println(group);
 		
-		/*Group gr = new Group();
+
 		
-		System.out.println(gr.searchSudent("Cooper"));
-		gr.searchSudent("  cooper ");
-		gr.searchSudent("Boon");
-		gr.searchSudent("Denton");
-*/
+		group.searchSudent("  cooper ");
+		group.searchSudent("Boon");
+		group.searchSudent("Denton");
 		
 		group.removeStudent(10);
 		System.out.println(group);
@@ -45,7 +43,7 @@ public class Main {
 		System.out.println("Sort by age: " + System.lineSeparator() + group.sortByBirth());
 		System.out.println("Sort by name: " + System.lineSeparator() + group.sortByName());
 		
-		group.printGroup("Z:\\Courses_JAVA\\src\\groupList.csv");
+		//group.printGroup("Z:\\Courses_JAVA\\src\\groupList.csv");
 		/*
 		 	Example from outcome file:
 		 	
@@ -55,6 +53,10 @@ public class Main {
 			Hicock;Bill;11191873;m;172.0;70.0;GrannyVerse;PSAT;UT-3;5;5
 			
 		*/
+		group.importStudentFromFile("Z:\\Courses_JAVA\\src\\NewStudents.csv");
 		
+		System.out.println(group);
+		
+		group.searchSudent("queen");
 	}
 }
