@@ -65,7 +65,7 @@ public class Group implements WarCom {
 				if (surname.equals(null)) {
 					System.out.println("Cannot be null!");
 				}
-				else if (student.getSurname().equals(surname.trim())) {
+				else if (student.getSurname().equalsIgnoreCase(surname.trim())) {
 					System.out.println(student);
 					return student;
 					
@@ -100,8 +100,7 @@ public class Group implements WarCom {
 						String groupName = String.valueOf(JOptionPane.showInputDialog("Enter the group name"));
 						int course = Integer.valueOf(JOptionPane.showInputDialog("Enter the course (int)"));
 						Student.setListId(Student.getListId() + 1);
-						Group group = new Group();
-						group.addStudent(new Student(name, surname, birth, sex, height, weight, universityName, faculty, groupName, course));
+						addStudent(new Student(name, surname, birth, sex, height, weight, universityName, faculty, groupName, course));
 					} catch(NullPointerException e) {
 						e.getMessage();
 					}	
@@ -173,19 +172,28 @@ public class Group implements WarCom {
 				while (sc.hasNext()) {
 					String[] parseList = sc.nextLine().split("[;]");
 						try {String name = parseList[0];
+							System.err.println(name);
 							String surname = parseList[1];
+							System.err.println(surname);
 							String birth = parseList[2];
+							System.err.println(birth);
 							String sexStr = parseList[3];
+							System.err.println(sexStr);
 							char sex = sexStr.charAt(0);
 							Double height = Double.parseDouble(parseList[4]);
+							System.err.println(height);
 							Double weight = Double.parseDouble(parseList[5]);
+							System.err.println(weight);
 							String universityName = parseList[6];
+							System.err.println(universityName);
 							String faculty = parseList[7];
+							System.err.println(faculty);
 							String groupName = parseList[8];
+							System.err.println(groupName);
 							int course = Integer.parseInt(parseList[9]);
+							System.err.println(course);
 							Student.setListId(Student.getListId() + 1);
-							Group group = new Group();
-							group.addStudent(new Student(name, surname, birth, sex, height, weight, universityName, 
+							addStudent(new Student(name, surname, birth, sex, height, weight, universityName, 
 														faculty, groupName, course));
 						} catch(NullPointerException e) {
 							e.getMessage();

@@ -26,9 +26,11 @@ public class Main {
 		System.out.println(group);
 		
 
-		
+		System.out.println("  cooper :");
 		group.searchSudent("  cooper ");
+		System.out.println("Boon:");
 		group.searchSudent("Boon");
+		System.out.println("Denton:");
 		group.searchSudent("Denton");
 		
 		group.removeStudent(10);
