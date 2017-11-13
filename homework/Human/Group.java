@@ -193,16 +193,11 @@ public class Group implements WarCom {
 							int course = Integer.parseInt(parseList[9]);
 							System.err.println(course);
 							Student.setListId(Student.getListId() + 1);
-							addStudent(new Student(name, surname, birth, sex, height, weight, universityName, 
-														faculty, groupName, course));
-						} catch(NullPointerException e) {
-							e.getMessage();
-						}
+							addStudent(new Student(name, surname, birth, sex, height, weight, universityName, faculty, groupName, course));
+						} catch(NullPointerException e) {e.getMessage();}
 					}
 					sc.close();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
+			} catch (FileNotFoundException e) {e.printStackTrace();}
 		}
 		
 		@Override
