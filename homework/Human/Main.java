@@ -4,9 +4,11 @@ package com.homework.Human;
 import com.homework.Human.Exeptions.ClassExeption;
 import com.homework.Human.Exeptions.IDExeption;
 import com.homework.Human.Exeptions.IDFreeExeption;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Main {
-	public static void main(String[] args) throws ClassExeption, IDExeption, IDFreeExeption {
+	public static void main(String[] args) throws ClassExeption, IDExeption, IDFreeExeption, FileNotFoundException {
 				Group group = new Group();
 
 				group.addStudent(new Student("Gooshie", "Milton", "11191990", 'm', 174, 72, "GrannyVerse", "PSAT", "UT-1", 1));
@@ -60,5 +62,16 @@ public class Main {
 		System.out.println(group);
 		
 		group.searchSudent("queen");
+		
+		System.out.println("Start serialization: ");
+		
+		File file = new File("Z:\\Courses_JAVA\\src\\serialGroup.txt");
+		
+		group.saveGroupSerialized(file);
+		
+		Group.loadObjFromFile(file);
+		
+		System.out.println(Group.loadObjFromFile(file));
+		
 	}
 }

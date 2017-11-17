@@ -37,7 +37,7 @@ public class Summary implements Runnable{
 		
 		int index;
 		int threadsCount;
-		summ(index, threadsCount);
+		//summ(index, threadsCount);
 		
 	}
 	

@@ -16,6 +16,12 @@ import com.homework.Human.Exeptions.IDExeption;
 import com.homework.Human.Exeptions.IDFreeExeption;
 import com.homework.Human.Comparators.*;
 import com.homework.Human.Exeptions.ClassExeption;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 
 public class Group implements WarCom {
 		//private Student[] classList = new Student[10];
@@ -172,26 +178,16 @@ public class Group implements WarCom {
 				while (sc.hasNext()) {
 					String[] parseList = sc.nextLine().split("[;]");
 						try {String name = parseList[0];
-							System.err.println(name);
 							String surname = parseList[1];
-							System.err.println(surname);
 							String birth = parseList[2];
-							System.err.println(birth);
 							String sexStr = parseList[3];
-							System.err.println(sexStr);
 							char sex = sexStr.charAt(0);
 							Double height = Double.parseDouble(parseList[4]);
-							System.err.println(height);
 							Double weight = Double.parseDouble(parseList[5]);
-							System.err.println(weight);
 							String universityName = parseList[6];
-							System.err.println(universityName);
 							String faculty = parseList[7];
-							System.err.println(faculty);
 							String groupName = parseList[8];
-							System.err.println(groupName);
 							int course = Integer.parseInt(parseList[9]);
-							System.err.println(course);
 							Student.setListId(Student.getListId() + 1);
 							addStudent(new Student(name, surname, birth, sex, height, weight, universityName, faculty, groupName, course));
 						} catch(NullPointerException e) {e.getMessage();}
@@ -230,6 +226,38 @@ public class Group implements WarCom {
 				}		
 			}
 			return recrutsList;
+		}
+		
+		//serialization
+		@SuppressWarnings("resource")
+		public static void serialisationSavePrep(File file, Object obj) {
+			try {
+				ObjectOutput outObj = new ObjectOutputStream(new FileOutputStream(file, true));
+				outObj.writeObject(obj);
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+		public void saveGroupSerialized (File file) {
+			for (Student student : classList) {
+				Group.serialisationSavePrep(file, student);
+			}
+		}
+		
+		@SuppressWarnings("resource")
+		public static Object loadObjFromFile(File file) throws FileNotFoundException {
+			Scanner sc = new Scanner(file);
+			
+				try {
+					while (sc.hasNext()) {
+						ObjectInput objInp = new ObjectInputStream(new FileInputStream(file));
+						return objInp.readObject();
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			return null;
 		}
 		
 }

@@ -5,13 +5,13 @@ public class Main {
 		
 		Provider pro = new Provider();
 		
-		Transiver trans = new Transiver(pro, "PULL");
+		//Transiver trans = new Transiver(pro, "PULL");
 		Reciever reciv = new Reciever(pro, "PUSH");
 		
-		Thread thOne = new Thread(trans);
+		//Thread thOne = new Thread(trans);
 		Thread thTwo = new Thread(reciv);
 		
-		thOne.start();
+		//thOne.start();
 		thTwo.start();
 		
 		

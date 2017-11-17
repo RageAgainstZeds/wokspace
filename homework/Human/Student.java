@@ -1,5 +1,6 @@
 package com.homework.Human;
 
+import java.io.Serializable;
 import java.util.Calendar;
 /*
 import java.text.DateFormat;
@@ -8,7 +9,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 */
 
-public class Student extends Human {
+public class Student extends Human implements Serializable {
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 		private String universityName;
 		private String faculty;
 		private String groupName;
