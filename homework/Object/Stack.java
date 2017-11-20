@@ -9,10 +9,17 @@ public class Stack implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private static Object[] stack = new Object[10];
+	private static int top = 0;
 
 	public static Object[] getStack() {
 		return stack;
 	}
+	
+
+	public static int getTop() {
+		return top;
+	}
+
 
 	@Override
 	public String toString() {
@@ -22,44 +29,40 @@ public class Stack implements Serializable {
 	
 	
 	
-	public void addObject(Object object) {
-		for (int i = 0; i < stack.length + 1; i++) {
-			if (stack[i] == null) {
-				stack[i] = object;
-				System.out.println("Object was added");
-				break;
-			}
+	public void addObject(Object object) throws NullPointerException, StackIsFullExeption {
+		if (object == null) {
+			throw new NullPointerException();
+		} else if (top > stack.length) {
+			throw new StackIsFullExeption();
+		}
+		else {
+			stack[top] = object;
+			Stack.top += 1;
+			//System.out.println("Object added!");
+			//System.out.println("Top is - " + top);
+			
 		}
 	}
 	
 	public Object getObject() {
-		for (int i = 0; i < stack.length + 1; i++) {
-			if (stack[i] == null) {
-				return stack[i-1];
-			} else if (i == 9 && stack[i] != null) {
-				return stack[9];
-			}
+		if (top == 0) {
+			System.out.println("Stack is empty!");
+		} else {
+			return stack[top-1];
 		}
 		return null;
 	}
 	
 	public Object getEnDelObject() {
-		for (int i = 0; i < stack.length + 1; i++) {
-			Object obj;
-			if (stack[i] == null) {
-				if (i == 0) {
-					obj = stack[0];
-					stack[0] = null;
-					return stack[0];
-				}
-				obj = stack[i-1];
-				stack[i-1] = null;
-				return stack[i-1];
-			} else if (i == 9 && stack[i] != null) {
-				obj = stack[9];
-				stack[9] = null;
-				return stack[9];
-			}
+		Object obj;
+		if (top == 0) {
+			System.out.println("Stack is empty!");
+		} else {
+			
+			obj = stack[top-1];
+			stack[top-1] = null;
+			Stack.top -= 1;
+			return obj;
 		}
 		return null;
 	}
