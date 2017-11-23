@@ -40,11 +40,20 @@ public class FillVocabulary {
 		trans.setVocabulary("hands", "руки");
 	}
 	
-	public void manualAddWords() {
-		while(true) {
-			String strOne = JOptionPane.showInputDialog("Enter eglish word, please");
-			String strTwo = JOptionPane.showInputDialog("Enter ukrainian traslation of " + strOne);
-			trans.setVocabulary(strOne, strTwo);
-		}
+	public void addWords() {
+			String strEng = null;
+			String strUkr;
+			
+			try {
+				strEng = JOptionPane.showInputDialog("Enter eglish word, please");
+				strUkr = JOptionPane.showInputDialog("Enter ukrainian traslation of '" + strEng + "'");
+				
+				trans.setVocabulary(strEng, strUkr);
+			} catch (NullPointerException e) {
+				e.getMessage();
+			}
+			
+			
+		
 	}	
 }

@@ -10,8 +10,12 @@ public class Main {
 										"Z:\\Courses_JAVA\\src\\Ukrainian.out");
 		trans.readFile();
 		
+		
+		FillVocabulary input = new FillVocabulary();
+		input.addWords();
+		
 		trans.saveVocabulary("Z:\\Courses_JAVA\\src\\vocabulary.out");
-
+			
 	}
 
 }
