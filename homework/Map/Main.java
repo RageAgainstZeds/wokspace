@@ -12,8 +12,11 @@ public class Main {
 		
 		
 		FillVocabulary input = new FillVocabulary();
+		
+		//add single word to vocabulary
 		input.addWords();
 		
+		//save vocabulary into a file
 		trans.saveVocabulary("Z:\\Courses_JAVA\\src\\vocabulary.out");
 			
 	}
