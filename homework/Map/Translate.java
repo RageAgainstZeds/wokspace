@@ -2,9 +2,11 @@ package com.homework.Map;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +17,7 @@ public class Translate implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Map<String, String> vocabulary = new HashMap<>();
+	private static Map<String, String> vocabulary;
 	private String urlFile;
 	private String urlTarget;
 	private File fileIn;
@@ -23,39 +25,10 @@ public class Translate implements Serializable {
 	
 	public Translate(String urlFile, String urlTarget) {
 		super();
-		this.vocabulary = new HashMap<>();
-		vocabulary.put("hey", "xей");
-		vocabulary.put("cripple", "роздовбаний");
-		vocabulary.put("creek", "річковий");
-		vocabulary.put("ferry", "паром");
-		vocabulary.put("butting", "проривається");
-		vocabulary.put("through", "крізь");
-		vocabulary.put("the", "");
-		vocabulary.put("overhanging", "нависають");
-		vocabulary.put("trees", "дерева");
-		vocabulary.put("make", "робить");
-		vocabulary.put("way", "шлях");
-		vocabulary.put("for", "для");
-		vocabulary.put("waters", "води");
-		vocabulary.put("going", "біжать");
-		vocabulary.put("down", " вниз");
-		vocabulary.put("it’s", "це");
-		vocabulary.put("a", "");
-		vocabulary.put("mighty", "могутній");
-		vocabulary.put("tight", "хват");
-		vocabulary.put("squeeze", "стискає");
-		vocabulary.put("all", "весь");
-		vocabulary.put("alone", "на самоті");
-		vocabulary.put("captain", "капітан");
-		vocabulary.put("stands", "стоїть");
-		vocabulary.put("hasn’t", "не");
-		vocabulary.put("heard", "чує");
-		vocabulary.put("from", "з");
-		vocabulary.put("his", "його");
-		vocabulary.put("deck", "палуби");
-		vocabulary.put("hands", "руки");
+		Translate.vocabulary = new HashMap<>();
 		this.fileIn = new File(urlFile);
-		this.fileOut = new File(urlTarget);	
+		this.fileOut = new File(urlTarget);
+		FillVocabulary.fillMapDefault();
 	}
 	
 	
@@ -64,6 +37,11 @@ public class Translate implements Serializable {
 		super();
 	}
 
+
+	
+	public void setVocabulary(String str1, String str2) {
+		Translate.vocabulary.put(str1, str2);
+	}
 
 
 	public String getUrlFile() {
@@ -122,10 +100,8 @@ public class Translate implements Serializable {
 	
 	public void translateAnWrite(String str) {
 		try(FileWriter writer = new FileWriter(this.fileOut, true)) {
-
-			System.out.println("|"+str+"|" + Character.isUpperCase(str.charAt(0)));
 			if (vocabulary.containsKey((str.toLowerCase()))) {
-				writer.write(vocabulary.get(str.toLowerCase()) + " ");
+				writer.write(Translate.vocabulary.get(str.toLowerCase()) + " ");
 			} else {
 				writer.write(str + " ");
 			}
@@ -135,6 +111,14 @@ public class Translate implements Serializable {
 			e.getMessage();
 		}
 	}
+	
+	public void saveVocabulary(String link) throws IOException {
+		  FileOutputStream fos = new FileOutputStream(link);
+		  ObjectOutputStream oos = new ObjectOutputStream(fos);
+		  oos.writeObject(Translate.vocabulary);
+		  oos.flush();
+		  oos.close();
+		}
 	
 	
 	
