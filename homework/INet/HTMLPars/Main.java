@@ -6,12 +6,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String adress = "https://prog.kiev.ua/";
-		File fileOut = new File("Z:\\Courses_JAVA\\src\\INet\\body.html");
+		String adress = "https://geektimes.ru/post/295893/";
+		File fileBody = new File("Z:\\Courses_JAVA\\src\\INet\\body.html");
+		File fileLinks = new File("Z:\\Courses_JAVA\\src\\INet\\links.txt");
 		
-		//GetTextFromURL.getStringFromURL(adress, fileOut);
+		GetTextFromURL.getStringFromURL(adress, fileBody);
 		
-		ParseHTML.extractHREF(fileOut);
+		ParseHTML.extractHREF(fileBody, fileLinks);
+		
 	}
 
 }

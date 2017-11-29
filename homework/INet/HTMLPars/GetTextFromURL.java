@@ -2,11 +2,9 @@ package com.homework.INet.HTMLPars;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -46,7 +44,6 @@ public class GetTextFromURL {
 	}
 
 	public static void getStringFromURL(String adress, File fileOut) {
-		StringBuilder sb = new StringBuilder();
 		try (FileWriter writer = new FileWriter(fileOut)) {
 			writer.write("");
 		} catch (Exception e) {
